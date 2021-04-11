@@ -5,11 +5,12 @@ import Hooks from "../hooks";
 const FormularzKontaktowy = () => {
   const formularzKontaktowy = Hooks.useFormularzKontaktowy();
 
-  const [kontaktImie, seKontaktImie] = useState("Jan");
-  const [kontaktNazwisko, seKontaktNazwisko] = useState("Kowalski");
-  const [kontaktEmail, seKontaktEmail] = useState("jkowalski@sii.pl");
+  // const [kontaktImie, seKontaktImie] = useState("Jan");
+  // const [kontaktNazwisko, seKontaktNazwisko] = useState("Kowalski");
+  // const [kontaktEmail, seKontaktEmail] = useState("jkowalski@sii.pl");
+  console.log(formularzKontaktowy.clickSubmit);
 
-  return (
+  return !formularzKontaktowy.clickSubmit ? (
     <form
       id="formularzKontaktowy"
       className="formularzKontaktowy"
@@ -18,7 +19,7 @@ const FormularzKontaktowy = () => {
       <h1>FormularzKontaktowy</h1>
       <fieldset>
         <legend>Dane Kontaktowe</legend>
-        <label for="imie">Podaj imie:</label>
+        <label>Podaj imie:</label>
         <input
           id="imie"
           name="Imie"
@@ -26,24 +27,24 @@ const FormularzKontaktowy = () => {
           required
           minlength="4"
           maxlength="20"
-          value={kontaktImie}
+          value={formularzKontaktowy.kontaktImie}
           onChange={formularzKontaktowy.onChangeImie}
         />
-        <label for="naziwsko">Podaj naziwsko:</label>
+        <label>Podaj naziwsko:</label>
         <input
           id="naziwsko"
           name="Naziwsko"
           type="text"
-          value={kontaktNazwisko}
+          value={formularzKontaktowy.kontaktNazwisko}
           onChange={formularzKontaktowy.onChangeNazwisko}
         />
-        <label for="email">Podaj email:</label>
+        <label>Podaj email:</label>
         <input
           id="email"
           name="Email"
           type="email"
           required
-          value={kontaktEmail}
+          value={formularzKontaktowy.kontaktEmail}
           onChange={formularzKontaktowy.onChangeEmail}
         />
 
@@ -56,26 +57,24 @@ const FormularzKontaktowy = () => {
         <legend>Zgody na przetwarzanie</legend>
       </fieldset>
       <fieldset>
-        <button
-          type="submit"
-          formmethod="get"
-          formaction="#form-kontakt-action-1"
-        >
-          Wyslij 1
-        </button>
+        <button type="submit">Wyslij</button>
         <button type="reset">Wyczysc</button>
-        <button type="button">Inna akcja</button>
+        {/* <button type="button">Inna akcja</button> */}
 
-        <input
+        {/* <input
           type="submit"
           formmethod="get"
           formaction="#form-kontakt-action-1"
           value="Wyslij 2"
         />
         <input type="reset" value="Wyczysc" />
-        <input type="button" value="Inna akcja" />
+        <input type="button" value="Inna akcja" /> */}
       </fieldset>
     </form>
+  ) : (
+    <section>
+      <h2>Dziekujemy za wyslanie</h2>
+    </section>
   );
 };
 
