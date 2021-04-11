@@ -5,7 +5,8 @@ const initialState = {
   clickSubmit: false,
   kontaktImie: "Mariusz",
   kontaktNaziwsko: "Taran",
-  kontaktEmail: "mtaranek@sii.pl"
+  kontaktEmail: "mtaranek@sii.pl",
+  adresyEmail: []
 };
 
 const actions = {
@@ -46,7 +47,7 @@ const reducer = (state, action) => {
     case actions.CHANGE_ZGODY_RODO:
       return {
         ...state,
-        zgodaRODO: action.payload
+        zgodyRodo: action.payload
       };
 
     default:
@@ -97,7 +98,6 @@ export const useFormularzKontaktowy = () => {
   };
 
   const onChangeRodo = event => {
-    event.preventDefault();
     console.log("onChangeRodo");
     const zgoda = event.currentTarget.value.includes("true");
     dispatch({ type: actions.CHANGE_ZGODY_RODO, payload: zgoda });

@@ -5,12 +5,12 @@ import Hooks from "./hooks";
 import "./style.css";
 
 const Header = () => {
-  const [imie, setImie] = useState(window.STAN.kontaktImie);
-  useEffect(() => {
-    setImie(window.STAN.kontaktImie);
-  });
+  // const [imie, setImie] = useState(window.STAN.kontaktImie);
+  // useEffect(() => {
+  //   setImie(window.STAN.kontaktImie);
+  // });
 
-  return <h1>Witaj {imie}</h1>;
+  return <h1>Witaj</h1>; // {imie}
 };
 
 const Nav = () => {

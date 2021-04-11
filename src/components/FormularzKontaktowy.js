@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormularzKontaktowy.css";
 import Hooks from "../hooks";
 
 const FormularzKontaktowy = () => {
   const formularzKontaktowy = Hooks.useFormularzKontaktowy();
-  const [zgodaRODO, setZgodaRODO] = useState(true);
+  // const [zgodaRODO, setZgodaRODO] = useState(true);
+
+  const [adresyEmil, setAdresyEmail] = useState([]);
+
+  useEffect(() => {
+    const getAdresyEmail = async () => {
+      let response = await fetch("dane.json");
+      let jsonResponse = await response.json();
+      console.log(jsonResponse);
+      setAdresyEmail(jsonResponse);
+    };
+
+    getAdresyEmail();
+  }, []);
 
   // const [kontaktImie, seKontaktImie] = useState("Jan");
   // const [kontaktNazwisko, seKontaktNazwisko] = useState("Kowalski");
@@ -26,8 +39,8 @@ const FormularzKontaktowy = () => {
           name="Imie"
           type="text"
           required
-          minlength="4"
-          maxlength="20"
+          // minlength="4"
+          // maxlength="20"
           value={formularzKontaktowy.kontaktImie}
           onChange={formularzKontaktowy.onChangeImie}
         />
@@ -72,6 +85,14 @@ const FormularzKontaktowy = () => {
       </fieldset>
       <fieldset>
         <legend>Zgody na przetwarzanie</legend>
+      </fieldset>
+      <fieldset>
+        <legend>Adresy</legend>
+        <ul>
+          {adresyEmil.map(email => {
+            return <li>{email}</li>;
+          })}
+        </ul>
       </fieldset>
       <fieldset>
         <button type="submit">Wyslij</button>
