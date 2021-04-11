@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import "./FormularzKontaktowy.css";
+import Hooks from "../hooks";
 
 const FormularzKontaktowy = () => {
+  const formularzKontaktowy = Hooks.useFormularzKontaktowy();
+
   const [kontaktImie, seKontaktImie] = useState("Jan");
   const [kontaktNazwisko, seKontaktNazwisko] = useState("Kowalski");
   const [kontaktEmail, seKontaktEmail] = useState("jkowalski@sii.pl");
 
   return (
-    <form id="formularzKontaktowy" className="formularzKontaktowy">
+    <form
+      id="formularzKontaktowy"
+      className="formularzKontaktowy"
+      onSubmit={formularzKontaktowy.onClickSubmit}
+    >
       <h1>FormularzKontaktowy</h1>
       <fieldset>
         <legend>Dane Kontaktowe</legend>
@@ -20,7 +27,7 @@ const FormularzKontaktowy = () => {
           minlength="4"
           maxlength="20"
           value={kontaktImie}
-          onChange={e => seKontaktImie(e.target.value)}
+          onChange={formularzKontaktowy.onChangeImie}
         />
         <label for="naziwsko">Podaj naziwsko:</label>
         <input
@@ -28,7 +35,7 @@ const FormularzKontaktowy = () => {
           name="Naziwsko"
           type="text"
           value={kontaktNazwisko}
-          onChange={e => seKontaktNazwisko(e.target.value)}
+          onChange={formularzKontaktowy.onChangeNazwisko}
         />
         <label for="email">Podaj email:</label>
         <input
@@ -37,7 +44,7 @@ const FormularzKontaktowy = () => {
           type="email"
           required
           value={kontaktEmail}
-          onChange={e => seKontaktEmail(e.target.value)}
+          onChange={formularzKontaktowy.onChangeEmail}
         />
 
         <div className="walidator">nieporawne imie</div>
