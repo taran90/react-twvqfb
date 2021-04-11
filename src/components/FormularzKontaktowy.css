@@ -1,0 +1,24 @@
+/* .formularzKontaktowy {
+  border: 1px solid grey;
+} */
+
+.formularzKontaktowy * {
+  display: block;
+}
+
+.formularzKontaktowy input {
+  border: 1px solid green;
+}
+
+.formularzKontaktowy input:invalid {
+  border: 1px solid red;
+}
+
+.formularzKontaktowy div.walidator {
+  display: none;
+}
+
+.formularzKontaktowy input#imie:invalid ~ div.walidator {
+  display: block;
+  color: red;
+}

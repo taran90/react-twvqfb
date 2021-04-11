@@ -1,0 +1,21 @@
+main {
+  color: green;
+}
+
+main::before {
+  content: "przed ";
+  color: red;
+}
+
+main::after {
+  content: " " attr(titleAtt);
+  color: blue;
+}
+
+.kontent-glowny {
+  background-color: yellow;
+}
+
+main[titleAtt] {
+  color: rgb(95, 23, 79);
+}
