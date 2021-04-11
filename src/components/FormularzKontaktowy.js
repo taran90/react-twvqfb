@@ -4,6 +4,7 @@ import Hooks from "../hooks";
 
 const FormularzKontaktowy = () => {
   const formularzKontaktowy = Hooks.useFormularzKontaktowy();
+  const [zgodaRODO, setZgodaRODO] = useState(true);
 
   // const [kontaktImie, seKontaktImie] = useState("Jan");
   // const [kontaktNazwisko, seKontaktNazwisko] = useState("Kowalski");
@@ -52,6 +53,22 @@ const FormularzKontaktowy = () => {
       </fieldset>
       <fieldset>
         <legend>Zgody Marketingowe</legend>
+        <legend>TAK</legend>
+        <input
+          type="radio"
+          name="zgodaRODO"
+          value="true"
+          checked={formularzKontaktowy.zgodaRODO}
+          onChange={formularzKontaktowy.onChangeRodo}
+        />
+        <legend>NIE</legend>
+        <input
+          type="radio"
+          name="zgodaRODO"
+          value="false"
+          checked={!formularzKontaktowy.zgodaRODO}
+          onChange={formularzKontaktowy.onChangeRodo}
+        />
       </fieldset>
       <fieldset>
         <legend>Zgody na przetwarzanie</legend>

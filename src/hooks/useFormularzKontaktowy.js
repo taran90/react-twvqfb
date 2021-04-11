@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 
 const initialState = {
+  zgodyRodo: false,
   clickSubmit: false,
   kontaktImie: "Mariusz",
   kontaktNaziwsko: "Taran",
@@ -11,10 +12,13 @@ const actions = {
   CLICK_SUBMIT: "CLICK_SUBMIT",
   CHANGE_IMIE: "CHANGE_IMIE",
   CHANGE_NAZWISKO: "CHANGE_NAZWISKO",
-  CHANGE_EMAIL: "CHANGE_EMAIL"
+  CHANGE_EMAIL: "CHANGE_EMAIL",
+  CHANGE_ZGODY_RODO: "CHANGE_ZGODY_RODO"
 };
 
 const reducer = (state, action) => {
+  window.STAN = state;
+
   switch (action.type) {
     case actions.CLICK_SUBMIT:
       return {
@@ -38,6 +42,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         kontaktEmail: action.payload
+      };
+    case actions.CHANGE_ZGODY_RODO:
+      return {
+        ...state,
+        zgodaRODO: action.payload
       };
 
     default:
@@ -87,12 +96,21 @@ export const useFormularzKontaktowy = () => {
     dispatch({ type: actions.CHANGE_EMAIL, payload: email });
   };
 
+  const onChangeRodo = event => {
+    event.preventDefault();
+    console.log("onChangeRodo");
+    const zgoda = event.currentTarget.value.includes("true");
+    dispatch({ type: actions.CHANGE_ZGODY_RODO, payload: zgoda });
+  };
+  window.STAN = { ...state };
+
   return {
     ...state,
     onClickSubmit,
     onChangeImie,
     onChangeNazwisko,
-    onChangeEmail
+    onChangeEmail,
+    onChangeRodo
   };
 };
 

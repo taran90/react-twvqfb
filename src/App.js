@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRoutes } from "hookrouter";
 import Routers from "./routers";
-
+import Hooks from "./hooks";
 import "./style.css";
 
 const Header = () => {
-  return <header>Naglowek</header>;
+  const [imie, setImie] = useState(window.STAN.kontaktImie);
+  useEffect(() => {
+    setImie(window.STAN.kontaktImie);
+  });
+
+  return <h1>Witaj {imie}</h1>;
 };
 
 const Nav = () => {
